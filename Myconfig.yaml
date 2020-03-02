@@ -8,7 +8,7 @@ scenarios:
   simple:
     think-time: 0.75
     requests:
-         - http://34.222.73.223:8080/greeting
+         - http://34.220.140.162:8080/greeting
 reporting:
 - module: final-stats
   dump-xml: stats.xml 
