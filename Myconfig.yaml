@@ -8,12 +8,8 @@ scenarios:
   simple:
     think-time: 0.75
     requests:
-<<<<<<< HEAD
-         - http://34.222.73.223:8080/greeting
-         - http://34.222.73.223:8080/greeting?user=varun
-=======
          - http://34.220.140.162:8080/greeting
->>>>>>> b7d048ac94591b82ddf0eb153cf2f3e4ecc742dd
+         - http://34.220.140.162:8080/greeting?user=varun
 reporting:
 - module: final-stats
   dump-xml: stats.xml 
