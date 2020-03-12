@@ -7,8 +7,8 @@ execution:
 scenarios:
   simple:
     requests:
-         - http://34.220.140.162:8080/greeting
-         - http://34.220.140.162:8080/greeting?name=varun
+         - http://54.187.115.1:8080/greeting
+         - http://54.187.115.1:8080/greeting?name=varun
 reporting:
 - module: final-stats
   dump-xml: stats.xml 
