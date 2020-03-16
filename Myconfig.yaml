@@ -7,8 +7,7 @@ execution:
 scenarios:
   simple:
     requests:
-         - http://54.187.115.1:8080/greeting
-         - http://54.187.115.1:8080/greeting?name=varun
+         - http://dayrhecdad008.enterprisenet.org:8091/gsrsourcesystemservice/charmaintenance/ruleaction
 reporting:
 - module: final-stats
   dump-xml: stats.xml 
