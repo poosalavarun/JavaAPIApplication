@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+  <project default="all" basedir="." name="ant-tibco">
+
+<!-- limit ssh connect attempt -->
+<script language="javascript"> <![CDATA[
+     com.jcraft.jsch.JSch.setConfig("MaxAuthTries", "1");
+]]> </script>
+
+<!-- macrodef to define propertycopy tag -->
+  <macrodef name="propertycopy">
+	<attribute name="name"/>
+	<attribute name="from"/>
+	<sequential>
+	  <property name="@{name}" value="${@{from}}"/>
+	</sequential>
+  </macrodef>
+ <property environment="jenkinsEnvironment"/>
+ <property name="JenkinsDir" value="${jenkinsEnvironment.WORKSPACE}" />
+<property name="BUILD_HOST" value="dayrhecdad008.enterprisenet.org"/>
+<property name="ssh_user_for_build" value="qabuild" />
+ <property name="ssh_password_for_build" value="oi2l(3UWk" />
+ <property name="buildPathDocker" value="/home/${ssh_user_for_build}/docker_build/Tarus"/>
+<target name="Build_Taurus_Docker_Image" >
+      <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
+               command="mkdir -p ${buildPathDocker}" />
+      <scp todir="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}" trust="true" >  
+        <fileset file="${JenkinsDir}/PerformanceTest_Pipeline/Myconfig.yml"></fileset>
+        <!-- <fileset dir="${JenkinsDir}/master/${repositoryName}/${subModuleName}"></fileset> -->
+      </scp>
+      <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
+               command="cd ${buildPathDocker}; docker run --rm -v /buildPathDocker:/bzt-configs blazemeter/taurus Myconfig.yml " />
+	  <scp file="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}/stats.xml" todir="${JenkinsDir}"/>
+      <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
+               command="if [ -d  ${buildPathDocker} ]; then rm -rf ${buildPathDocker}; fi" /> 
+    </target>
