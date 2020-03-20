@@ -28,7 +28,7 @@
         <!-- <fileset dir="${JenkinsDir}/master/${repositoryName}/${subModuleName}"></fileset> -->
       </scp>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
-               command="cd ${buildPathDocker}; docker run --rm -v /buildPathDocker:/bzt-configs blazemeter/taurus Myconfig.yml " />
+               command="cd ${buildPathDocker}; docker run --rm -v /buildPathDocker:/bzt-configs blazemeter/taurus Myconfig.yaml " />
 	  <scp file="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}/stats.xml" todir="${JenkinsDir}"/>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="if [ -d  ${buildPathDocker} ]; then rm -rf ${buildPathDocker}; fi" /> 
