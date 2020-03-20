@@ -33,3 +33,4 @@
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="if [ -d  ${buildPathDocker} ]; then rm -rf ${buildPathDocker}; fi" /> 
     </target>
+</project>
