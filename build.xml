@@ -23,10 +23,11 @@
 <target name="Build_Taurus_Docker_Image" >
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="mkdir -p ${buildPathDocker}" />
-      <scp todir="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}" trust="true" >  
-        <fileset file="${JenkinsDir}/Myconfig.yml"></fileset>
-        <!-- <fileset dir="${JenkinsDir}/master/${repositoryName}/${subModuleName}"></fileset> -->
-      </scp>
+	  <scp  file="${JenkinsDir}/Myconfig.yml" todir="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}" trust="true" />
+      <!-- <scp todir="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}" trust="true" >   -->
+        <!-- <fileset file="${JenkinsDir}/Myconfig.yml"></fileset> -->
+        <!-- <!-- <fileset dir="${JenkinsDir}/master/${repositoryName}/${subModuleName}"></fileset> --> -->
+      <!-- </scp> -->
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="cd ${buildPathDocker};pwd;ls -lrt;docker run --rm -v /buildPathDocker:/bzt-configs blazemeter/taurus Myconfig.yaml " />
 	  <scp file="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}/stats.xml" todir="${JenkinsDir}"/>
