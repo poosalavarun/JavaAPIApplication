@@ -23,9 +23,7 @@
 <target name="Build_Taurus_Docker_Image" >
  <echo message="Entered target"/>
 		<exec executable="date"/>
-	<exec executable="ls ">
-            <arg line="-l" />
-        </exec>
+	<exec executable="ls"/>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="mkdir -p ${buildPathDocker}" />
 		<scp file="Myconfig.yml" todir="${ssh_user_for_build}@${BUILD_HOST}:${buildPathDocker}" password="${ssh_password_for_build}"/>	   
