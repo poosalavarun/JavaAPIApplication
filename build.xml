@@ -21,7 +21,7 @@
  <property name="ssh_password_for_build" value="oi2l(3UWk" />
  <property name="buildPathDocker" value="/home/${ssh_user_for_build}/docker_build/Tarus"/>
 <target name="Build_Taurus_Docker_Image" >
- <echo message="Listing source folder ..."/>
+ <echo message="Entered target"/>
 		<exec executable="date"/>
 	<exec executable="ls ">
             <arg line="-l" />
