@@ -26,7 +26,7 @@
 	<exec executable="ls"/>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="mkdir -p ${buildPathDocker}" />
-	   <scp file="Myconfig.yaml" todir="${ssh_user_for_build}:${ssh_password_for_build}@${build_host}:${buildpathdocker}"/>
+	   <scp file="Myconfig.yaml" todir="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildpathdocker}"/>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="cd ${buildPathDocker};pwd;ls -lrt;docker run --rm -v /buildPathDocker:/bzt-configs blazemeter/taurus Myconfig.yaml " />
 	  <scp file="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}/stats.xml" todir="${JenkinsDir}"/>
