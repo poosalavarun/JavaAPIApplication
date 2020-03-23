@@ -28,7 +28,7 @@
                command="mkdir -p ${buildPathDocker}" />
 	   <scp file="Myconfig.yaml" todir="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:/home/${ssh_user_for_build}/docker_build/Tarus;" trust="true"/>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
-               command="cd ${buildPathDocker};pwd;ls -lrt;chmod -R 755 ${buildPathDocker}; docker run --rm -v ${buildPathDocker}:/bzt-configs blazemeter/taurus Myconfig.yaml " />
+               command="cd ${buildPathDocker};pwd;ls -lrt;chmod -R 744 ${buildPathDocker}; docker run --rm -v ${buildPathDocker}:/bzt-configs blazemeter/taurus Myconfig.yaml " />
 	  <scp file="${ssh_user_for_build}:${ssh_password_for_build}@${BUILD_HOST}:${buildPathDocker}/stats.xml" todir="${JenkinsDir}"/>
       <sshexec usepty="true" host="${BUILD_HOST}" username="${ssh_user_for_build}" password="${ssh_password_for_build}" trust="true" 
                command="if [ -d  ${buildPathDocker} ]; then rm -rf ${buildPathDocker}; fi" /> 
